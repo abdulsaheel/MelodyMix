@@ -39,6 +39,18 @@ This Flutter application allows users to explore and play music from the Saavn p
 - `just_audio_background`: Allows background audio playback.
 - `flutter/material.dart`: Flutter material design widgets.
 
+### Download the App
+
+<a href="https://github.com/abdulsaheel/MelodyMix/releases" target="_blank">
+  <img src="https://img.shields.io/badge/Download-App-blue?style=for-the-badge&logo=flutter" alt="Download App">
+</a>
+
+### Get it on GitHub
+
+<a href="https://github.com/abdulsaheel/MelodyMix/releases" target="_blank">
+  <img src="https://img.shields.io/badge/Get%20It%20From-GitHub-lightgrey?style=for-the-badge&logo=github" alt="Get It From GitHub">
+</a>
+```
 
 ### Todos
 
@@ -50,6 +62,7 @@ This Flutter application allows users to explore and play music from the Saavn p
 - [ ] Add an option to play all songs in playlists and albums.
 - [ ] Enhance the player UI with album art, song progress, and controls.
 - [ ] Implement offline mode for downloading and playing music offline.
+- [ ] Implement Home Screen Widget with Playback Controls
 
 ### Disclaimer
 
