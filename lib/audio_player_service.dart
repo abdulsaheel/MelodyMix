@@ -26,6 +26,7 @@ class AudioPlayerService {
 
   Future<void> _init() async {
     final session = await AudioSession.instance;
+
     await session.configure(const AudioSessionConfiguration.speech());
     _player.playbackEventStream.listen((event) {},
         onError: (Object e, StackTrace stackTrace) {

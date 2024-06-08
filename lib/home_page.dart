@@ -4,6 +4,8 @@ import 'album_screen.dart';
 import 'playlist_screen.dart';
 import 'searchPage.dart';
 import 'audio_player_service.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'dart:io';
 
 class MyHomePage extends StatefulWidget {
   final List<Map<String, dynamic>> trendingSongs;
@@ -181,6 +183,74 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildPlaylistsSection() {
+    if (kIsWeb || Platform.isWindows) {
+      return _buildPlaylistsForWeb();
+    } else {
+      return _buildPlaylistsForMobile();
+    }
+  }
+
+  Widget _buildPlaylistsForWeb() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Padding(
+          padding: EdgeInsets.fromLTRB(10.0, 2.0, 0.0, 0.8),
+          // Apply padding only to the text
+          child: Row(
+            children: [
+              Text(
+                'Swipe to Discover Your Mood.',
+                style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                  fontSize: 20.0,
+                ),
+              ),
+              SizedBox(width: 8.0), // Add space between text and icon
+              Icon(Icons.swipe, size: 16.0), // Arrow icon
+            ],
+          ),
+        ),
+        const SizedBox(height: 8.0),
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final double itemWidth = constraints.maxWidth / 4;
+            final int columns = (constraints.maxWidth / itemWidth).floor();
+
+            return Container(
+              height: 300.0,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(
+                    (widget.playlists.length / columns).ceil(),
+                    (index) {
+                      final startIndex = index * columns;
+                      final endIndex = startIndex + columns;
+                      final pagePlaylists =
+                          widget.playlists.sublist(startIndex, endIndex);
+                      return SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: GridView.count(
+                          physics: const NeverScrollableScrollPhysics(),
+                          crossAxisCount: columns,
+                          children: pagePlaylists
+                              .map((playlist) => _buildPlaylistItem(playlist))
+                              .toList(),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPlaylistsForMobile() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -203,7 +273,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         const SizedBox(height: 8.0),
         Container(
-          height: 410.0, // Adjust height as needed
+          height: 410.0,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -215,12 +285,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   final pagePlaylists =
                       widget.playlists.sublist(startIndex, endIndex);
                   return SizedBox(
-                    width: MediaQuery.of(context)
-                        .size
-                        .width, // Ensure full width of the screen
+                    width: MediaQuery.of(context).size.width,
                     child: GridView.count(
-                      physics:
-                          const NeverScrollableScrollPhysics(), // Disable scrolling of the GridView
+                      physics: const NeverScrollableScrollPhysics(),
                       crossAxisCount: 2,
                       children: pagePlaylists
                           .map((playlist) => _buildPlaylistItem(playlist))
@@ -233,6 +300,34 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildPlaylistItem(Map<String, dynamic> playlist,
+      {double? itemWidth}) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PlaylistScreen(
+              playlistId: playlist['id'] ?? 'Unknown',
+            ),
+          ),
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0), // Add padding between images
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8.0),
+          child: Image.network(
+            playlist['image'] ?? 'https://via.placeholder.com/200',
+            fit: BoxFit.cover,
+            width: itemWidth ?? 60.0,
+            height: itemWidth ?? 60.0,
+          ),
+        ),
+      ),
     );
   }
 
@@ -376,33 +471,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPlaylistItem(Map<String, dynamic> playlist) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => PlaylistScreen(
-              playlistId: playlist['id'] ?? 'Unknown',
-            ),
-          ),
-        );
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(8.0), // Add padding between images
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(8.0),
-          child: Image.network(
-            playlist['image'] ?? 'https://via.placeholder.com/200',
-            fit: BoxFit.cover,
-            width: 60.0, // Adjust image width
-            height: 60.0, // Adjust image height
-          ),
         ),
       ),
     );

@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'AudioPlayer_screen.dart';
 import 'splash_screen.dart'; // Import the splash screen
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 Future<void> main() async {
-  await JustAudioBackground.init(
-    androidNotificationChannelId: 'com.yourcompany.yourapp.channel.audio',
-    androidNotificationChannelName: 'Audio playback',
-    androidNotificationOngoing: true,
-  );
+  if (!kIsWeb) {
+    await JustAudioBackground.init(
+      androidNotificationChannelId: 'com.yourcompany.yourapp.channel.audio',
+      androidNotificationChannelName: 'Audio playback',
+      androidNotificationOngoing: true,
+    );
+  }
   runApp(MyApp());
 }
 
