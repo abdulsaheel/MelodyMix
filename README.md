@@ -50,7 +50,6 @@ This Flutter application allows users to explore and play music from the Saavn p
 <a href="https://github.com/abdulsaheel/MelodyMix/releases" target="_blank">
   <img src="https://img.shields.io/badge/Get%20It%20From-GitHub-lightgrey?style=for-the-badge&logo=github" alt="Get It From GitHub">
 </a>
-```
 
 ### Todos
 
