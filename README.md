@@ -49,6 +49,9 @@ This Flutter application allows users to explore and play music from the Saavn p
 <a href="https://github.com/abdulsaheel/MelodyMix/releases/download/v0.0.1/Melody.Mix.v0.0.1.apk" target="_blank">
   <img src="https://img.shields.io/badge/Download-Android-green?style=for-the-badge&logo=android" alt="Download Android">
 </a>
+<a href="https://melody-mix-web.web.app/" target="_blank">
+  <img src="https://img.shields.io/badge/Access-Web-blue?style=for-the-badge&logo=google-chrome" alt="Access Web">
+</a>
 
 ### Get it on GitHub
 
