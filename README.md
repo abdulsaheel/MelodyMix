@@ -41,8 +41,13 @@ This Flutter application allows users to explore and play music from the Saavn p
 
 ### Download the App
 
-<a href="https://github.com/abdulsaheel/MelodyMix/releases" target="_blank">
-  <img src="https://img.shields.io/badge/Download-App-blue?style=for-the-badge&logo=flutter" alt="Download App">
+#### Currently, Windows and Android builds are available for download:
+
+<a href="https://github.com/abdulsaheel/MelodyMix/releases/download/v0.0.1/MelodyMix-Windows-Installer.exe" target="_blank">
+  <img src="https://img.shields.io/badge/Download-Windows-blue?style=for-the-badge&logo=windows" alt="Download Windows">
+</a>
+<a href="https://github.com/abdulsaheel/MelodyMix/releases/download/v0.0.1/Melody.Mix.v0.0.1.apk" target="_blank">
+  <img src="https://img.shields.io/badge/Download-Android-green?style=for-the-badge&logo=android" alt="Download Android">
 </a>
 
 ### Get it on GitHub
@@ -61,7 +66,7 @@ This Flutter application allows users to explore and play music from the Saavn p
 - [ ] Add an option to play all songs in playlists and albums.
 - [ ] Enhance the player UI with album art, song progress, and controls.
 - [ ] Implement offline mode for downloading and playing music offline.
-- [ ] Implement Home Screen Widget with Playback Controls
+- [ ] Implement Home Screen Widget with Playback Controls.
 
 ### Disclaimer
 
@@ -79,5 +84,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 Feel free to contribute, report issues, or suggest features to enhance the app!
-
-
