@@ -78,7 +78,7 @@ This application is for educational purposes only. It neither promotes nor endor
 ### Credits
 
 - [JioSaavn API](https://github.com/sumitkolhe/jiosaavn-api): Provides access to the Saavn music catalog.
-- [Flutter](https://flutter.dev/): Framework for building cross-platform mobile applications.
+- [Flutter](https://flutter.dev/): Framework for building cross-platform mobile applications
 
 ### License
 
