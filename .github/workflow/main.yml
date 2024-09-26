@@ -1,52 +1,42 @@
-name: Build iOS IPA
+name: iOS-ipa-build
 
 on:
-  push:
-    branches:
-      - main  # or your preferred branch
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
-  build:
+  build-ios:
+    name: 🎉 iOS Build
     runs-on: macos-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2
         with:
-          channel: stable
-          flutter-version: 3.19.0
-          
-      - run: flutter --version
+          channel: 'stable'
+          architecture: x64
+      - run: flutter pub get
+      
 
+      - run: pod repo update
+        working-directory: ios
 
-      - name: Install Dependencies
-        run: flutter pub get
+      - run: flutter build ios --release --no-codesign
 
-      - name: Build iOS
-        run: flutter build ios --release --no-codesign
+      - run: mkdir Payload
+        working-directory: build/ios/iphoneos
 
-      - name: Create IPA
-        run: |
-          # Create an archive
-          xcodebuild -create-xcarchive \
-            -archivePath build/ios/archive/Runner.xcarchive \
-            -scheme Runner \
-            -configuration Release
+      - run: mv Runner.app/ Payload
+        working-directory: build/ios/iphoneos
 
-          # Export the IPA
-          xcodebuild -exportArchive \
-            -archivePath build/ios/archive/Runner.xcarchive \
-            -exportOptionsPlist ExportOptions.plist \
-            -exportPath output_directory
+      - name: Zip output
+        run: zip -qq -r -9 FlutterIpaExport.ipa Payload
+        working-directory: build/ios/iphoneos
 
-      - name: Upload IPA
-        uses: actions/upload-artifact@v2
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
         with:
-          name: MyApp.ipa
-          path: output_directory/MyApp.ipa
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/ios/iphoneos/FlutterIpaExport.ipa
+          tag: v1.0
+          overwrite: true
+          body: "This is first release"
