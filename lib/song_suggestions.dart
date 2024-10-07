@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 Future<List<Map<String, dynamic>>> getSongSuggestions(String id) async {
-  final String url = 'https://saavn.dev/api/songs/$id/suggestions';
+  final String url = 'https://jiosaavan-test-ten.vercel.app/api/songs/$id/suggestions';
   List<Map<String, dynamic>> suggestionsList = [];
 
   try {

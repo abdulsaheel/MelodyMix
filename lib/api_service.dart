@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 class APIService {
   final String homebaseUrl = 'https://jio-savn-six.vercel.app/modules';
-  final String baseUrl = 'https://saavn.dev/api';
+  final String baseUrl = 'https://jiosaavan-test-ten.vercel.app/api';
 
   Future<Map<String, dynamic>> fetchAlbumData(String videoId) async {
     final String apiUrl = '$baseUrl/albums?id=$videoId';

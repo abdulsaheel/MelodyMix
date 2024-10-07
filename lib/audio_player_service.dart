@@ -51,7 +51,7 @@ class AudioPlayerService {
   }
 
   Future<dynamic> _fetchSongInfo(String songId) async {
-    final url = Uri.parse('https://saavn.dev/api/songs/$songId');
+    final url = Uri.parse('https://jiosaavan-test-ten.vercel.app/api/songs/$songId');
     try {
       final response = await http.get(url);
       if (response.statusCode == 200) {
@@ -66,7 +66,7 @@ class AudioPlayerService {
   }
 
   Future<List<Map<String, dynamic>>> _fetchSongSuggestions(String id) async {
-    final String url = 'https://saavn.dev/api/songs/$id/suggestions';
+    final String url = 'https://jiosaavan-test-ten.vercel.app/api/songs/$id/suggestions';
     List<Map<String, dynamic>> suggestionsList = [];
     try {
       final response = await http.get(Uri.parse(url));

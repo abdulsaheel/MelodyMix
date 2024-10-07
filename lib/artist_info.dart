@@ -96,7 +96,7 @@ class ArtistDownloadUrl {
 }
 
 Future<ArtistInfo?> fetchArtistInfo(String artistId) async {
-  final String url = 'https://saavn.dev/api/artists/$artistId';
+  final String url = 'https://jiosaavan-test-ten.vercel.app/api/artists/$artistId';
 
   try {
     final response = await http.get(Uri.parse(url));

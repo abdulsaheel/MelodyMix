@@ -53,7 +53,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
   }
 
   Future<void> fetchPlaylist(String playlistId, int page) async {
-    final String baseUrl = 'https://saavn.dev/api';
+    final String baseUrl = 'https://jiosaavan-test-ten.vercel.app/api';
     final String apiUrl = '$baseUrl/playlists?id=$playlistId&page=$page';
 
     setState(() {

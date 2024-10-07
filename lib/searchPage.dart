@@ -275,7 +275,7 @@ class _SearchPageState extends State<SearchPage> {
   String? _errorMessage;
 
   Future<Map<String, dynamic>> fetchSaavnData(String query) async {
-    final url = Uri.parse('https://saavn.dev/api/search?query=$query');
+    final url = Uri.parse('https://jiosaavan-test-ten.vercel.app/api/search?query=$query');
 
     try {
       final response = await http.get(url);
